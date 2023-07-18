@@ -1,0 +1,11 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+const BookRouter = require("./routes/books.route");
+const app = express();
+app.use(bodyParser.json());
+app.use("/books", BookRouter)
+
+const PORT = 3000;
+app.listen(PORT, ()=> {
+    console.log("App is running on port: " + PORT);
+});
