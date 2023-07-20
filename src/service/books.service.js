@@ -109,53 +109,39 @@ function remove(id) {
     }
 }
 
-function validateCreateInputs (params) {
-    const {id, name, author, year} = params;
+function validateCreateInputs ({ id, title, author, createdAt }) {
     const result = {};
     if(!id) {
         return {
-            error: "Id is not found",
-            code: 404
+            message: "Id is not found",
+            status: 404
         }
     }
     result.id = id;
-    if(typeof id === 'string') {
+    if(!title) {
         return {
-            error: 'ID should be number',
-            code: 404
+            message: "Name is not found",
+            status: 404
         }
     }
-    console.log(typeof id)
-    if(!name) {
-        return {
-            error: "Name is not found",
-            code: 404
-        }
-    }
-    result.name = name;
+    result.title = title;
     if(!author) {
         return {
-            error: "Author is not found",
-            code: 404
+            message: "Author is not found",
+            status: 404
         }
     }
     result.author = author;
-    if(!year) {
+    if(!createdAt) {
         return {
-            error: "Year is not found",
-            code: 404
+            message: "Year is not found",
+            status: 404
         }
     }
-    result.year = year;
-    if(year < "2000") {
-        return {
-            error: "Book is old, try new one",
-            code: 404
-        }
-    }
-    result.year = year;
+    result.createdAt = createdAt;
     return {
-        code: 201,
+        status: 201,
+        message: "All field are correctly filled",
         result
     }
 }
@@ -193,5 +179,5 @@ module.exports = {
     update,
     remove,
     validateUpdateInputs,
-    validateCreateInputs,
+    validateCreateInputs
 }

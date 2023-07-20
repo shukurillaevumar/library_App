@@ -1,21 +1,21 @@
 const library = [
     {
         "id": "1",
-        "name": "Muhammadumar",
+        "title": "Muhammadumar",
         "author": "Muhammadumar",
-        "year": "1999"
+        "createdAt": "1999"
     },
     {
         "id": "2",
-        "name": "Muhammadumar",
+        "title": "Muhammadumar",
         "author": "Muhammadumar",
-        "year": "2000"
+        "createdAt": "2000"
     },
     {
         "id": "3",
-        "name": "Muhammadumar",
+        "title": "Muhammadumar",
         "author": "Muhammadumar",
-        "year": "2001"
+        "createdAt": "2001"
     }
 ];
 
