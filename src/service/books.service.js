@@ -1,5 +1,5 @@
 const library = require("../db/library.db");
-
+const { v4: uuidv4 } = require('uuid');
 function getAll() {
   return library;
 }
@@ -21,50 +21,6 @@ function getById(id) {
   }
 }
 
-// function validateCreateInput ({id, title, author, createdAt}) {
-//     const result = {};
-//     if(!id) {
-//         return {
-//             status: 404,
-//             message: "Id is not found"
-//         };
-//     }
-
-//     result.id = id;
-
-//     if(!title) {
-//         return {
-//             status: 404,
-//             message: "Title is not found"
-//         };
-//     }
-
-//     result.title = title;
-
-//     if(!author) {
-//         return {
-//             status: 404,
-//             message: "Authot is not found"
-//         };
-//     }
-
-//     result.author = author;
-
-//     if(!createdAt) {
-//         return {
-//             status: 404,
-//             message: "CreatedAt is not found"
-//         };
-//     }
-
-//     result.createdAt = createdAt;
-
-//     return {
-//         status: 200,
-//         message: "All fields successfully validated",
-//         result
-//     };
-// }
 
 function create(newBook) {
   library.push(newBook);
@@ -109,15 +65,10 @@ function remove(id) {
   }
 }
 
-function validateCreateInputs({ id, title, author, createdAt }) {
+function validateCreateInputs({ title, author, createdAt }) {
   const result = {};
-  if (!id) {
-    return {
-      message: "Id is not found",
-      status: 404,
-    };
-  }
-  result.id = id;
+
+  result.id = uuidv4();
   if (!title) {
     return {
       message: "Name is not found",
