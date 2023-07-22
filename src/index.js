@@ -9,6 +9,8 @@ app.use(bodyParser.json());
 app.use("/books", BookRouter);
 app.use("/students", StudentRouter);
 
+console.log("Hello world");
+
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log("App is running on port: " + PORT);
