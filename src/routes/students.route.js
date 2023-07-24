@@ -18,12 +18,15 @@ router.post("/", (req, res) => {
 
 router.put("/:id", (req, res) => {
     const {id} = req.params;
-    res.json("update student: " + id);
+
+    const validatedData = studentsService.validateUpdateInput(req.body);
+
+    res.json(studentsService.updateStudent({ studentId : id, updateData: validatedData }));
 })
 
 router.delete("/:id", (req, res) => {
     const {id} = req.params;
-    res.json("delete student: " + id);
+    res.json(studentsService.removeStudent(id));
 });
 
 module.exports = router;
