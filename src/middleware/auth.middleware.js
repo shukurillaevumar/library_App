@@ -7,7 +7,8 @@ const generateToken = (user) => {
         { 
             name: user.name,
             username: user.username,
-            role: user.role
+            role: user.role,
+            blocked: user.blocked
         },
         "your-secret-key",
         {
@@ -34,8 +35,23 @@ const authenticate = async (req, res, next) => {
     next();
 }
 
-const authorize = () => {
+const authorize = (req, res, next) => {
+    const token = req.header("Authorization");
+    if (!token) {
+        return res.status(401).json({ error: "Authorization token not found" });
+    }
 
+    try {
+        const decodedUser = jwt.verify(token, "your-secret-key");
+        if (decodedUser.blocked === true) {
+            return res.status(403).json({ error: "You're blocked" })
+        }
+        req.user = decodedUser;
+        console.log(decodedUser);
+        next();
+    } catch (error) {
+        return res.status(403).json({ error: "Invalid token" })
+    }
 }
 
 module.exports = {
