@@ -64,8 +64,30 @@ router.put("/edit/:id", authorize, (req, res) => {
 });
 
 router.delete("/delete/:id", authorize, (req, res) => {
+  const user = req.user;
   const { id } = req.params;
+  if (user.role === "LIBRARIAN") {
   res.json(bookService.remove(id));
+  } else {
+    return res
+    .status(401)
+    .json({ error: "You dont have access for this route" })
+  }
+
 });
 
+//Rent a book
+router.post("/rent/:id", authorize, (req, res) => {
+  const user = req.user;
+  const { id } = req.params;
+  if (user.role === "USER") {
+    res.json(bookService.rentBook(id));
+  } else {
+    return res
+    .status(401)
+    .json({ error: "You dont have access for this route" })
+  }
+});
+// Return a book
+router.post("/return", (req, res) => {});
 module.exports = router;

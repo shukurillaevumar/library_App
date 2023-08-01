@@ -11,7 +11,7 @@ const users = [
         username: "Ann2023",
         password: "$2b$10$Duc1SD1R.HeJ11/cnveSLu43uWi50OyFuV5ydQhGcydSeKwVZS9sG",
         role: "USER",
-        blocked: true
+        blocked: false
     },
     {
         name: "John",

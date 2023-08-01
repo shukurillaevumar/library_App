@@ -65,6 +65,23 @@ function remove(id) {
   }
 }
 
+const rentBook = (id) => {
+  const index = library.findIndex((book) => {
+    return book.id === id;
+  })
+  if (index === -1) {
+    return {
+      error: "Book is not found"
+    }
+  } else {
+    const rentedBook = library.splice(index, 1);
+    return {
+      result: "Successfully rented",
+      rentedBook
+    }
+  }
+}
+
 function validateCreateInputs({ title, author, createdAt }) {
   const result = {};
 
@@ -131,4 +148,5 @@ module.exports = {
   remove,
   validateUpdateInputs,
   validateCreateInputs,
+  rentBook
 };
